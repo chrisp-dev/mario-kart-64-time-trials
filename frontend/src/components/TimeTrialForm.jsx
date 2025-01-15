@@ -5,7 +5,7 @@ import axios from '../api/axios';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import Toast from './Toast';
 import { format } from 'date-fns';
-import '../App.css';
+import './TimeTrialForm.css';
 
 const TimeTrialForm = () => {
   const validationSchema = Yup.object({
@@ -83,7 +83,7 @@ const TimeTrialForm = () => {
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
                         input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true }
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -101,7 +101,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -118,7 +119,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -135,7 +137,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -152,7 +155,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -169,7 +173,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -186,7 +191,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -205,7 +211,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}

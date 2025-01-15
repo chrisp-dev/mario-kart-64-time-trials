@@ -25,11 +25,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use(cors({
-  origin: 'http://localhost:5173', // Ensure this matches your frontend's address and port
-  methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type,Authorization'
-}))
+app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173'] }))
 app.use(bodyParser.json())
 app.use(morgan('dev')) // Enable logging
 app.use('/time_trials', timeTrialsRouter)
