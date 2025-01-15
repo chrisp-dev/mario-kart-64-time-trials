@@ -1,25 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, CssBaseline, createTheme, ThemeProvider, Typography, Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import axios from '../api/axios';
+import axios from '../../api/axios';
 
-const TimeTrialsList = ({ fetchData }) => {
-  const [timeTrials, setTimeTrials] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
+const TimeTrialsList = ({ fetchData, timeTrials, isLoading }) => {
   useEffect(() => {
-    axios.get('/time_trials')
-      .then(response => {
-        const responseData = Array.isArray(response.data) ? response.data : [];
-        setTimeTrials(responseData);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching time trials:', error);
-        setTimeTrials([]);
-        setIsLoading(false);
-      });
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
   if (isLoading) {
     return <div>Loading...</div>;

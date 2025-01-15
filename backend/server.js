@@ -6,6 +6,7 @@ const prisma = new PrismaClient()
 const app = express()
 const bodyParser = require('body-parser')
 const timeTrialsRouter = require('./routes/timeTrials')
+const resultsRouter = require('./routes/results')
 const winston = require('winston')
 
 // Configure winston logger
@@ -25,10 +26,17 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173'] }))
+// Configure CORS to allow requests from localhost or 127.0.0.1
+const corsOptions = {
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  optionsSuccessStatus: 200 // For legacy browser support
+}
+
+app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(morgan('dev')) // Enable logging
 app.use('/time_trials', timeTrialsRouter)
+app.use('/results', resultsRouter)
 
 // Error-handling middleware
 app.use((err, req, res, next) => {
@@ -52,8 +60,9 @@ async function ensureDatabaseExists() {
 }
 
 ensureDatabaseExists().then(() => {
-  app.listen(3000, () => {
-    console.log('Server running on port 3000')
+  const PORT = process.env.PORT || 3000
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`)
   })
 })
 

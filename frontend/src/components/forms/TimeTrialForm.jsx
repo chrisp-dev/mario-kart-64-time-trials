@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import axios from '../api/axios';
+import axios from '../../api/axios';
 import { Box, Typography, TextField, Button } from '@mui/material';
-import Toast from './Toast';
+import Toast from '../common/Toast';
 import { format } from 'date-fns';
 import './TimeTrialForm.css';
 

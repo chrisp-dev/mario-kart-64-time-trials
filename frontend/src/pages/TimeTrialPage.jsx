@@ -1,7 +1,7 @@
 import React from 'react';
-import BasicLayout from './BasicLayout';
-import TimeTrialForm from './TimeTrialForm';
-import TimeTrialsList from './TimeTrialsList';
+import BasicLayout from '../components/common/BasicLayout';
+import TimeTrialForm from '../components/forms/TimeTrialForm';
+import TimeTrialsList from '../components/lists/TimeTrialsList';
 
 const TimeTrialPage = ({ fetchData, timeTrials, isLoading }) => {
   return (
