@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
+const logger = require('../logger')
 
 router.post('/', async (req, res) => {
     const { date, track_id, character, lap1, lap2, lap3, final_time, notes } = req.body
@@ -11,6 +12,7 @@ router.post('/', async (req, res) => {
         })
         res.status(201).json({ id: newTimeTrial.id })
     } catch (err) {
+        logger.error(err.message)
         res.status(500).send(err.message)
     }
 })
@@ -20,6 +22,7 @@ router.get('/', async (req, res) => {
         const timeTrials = await prisma.timeTrials.findMany()
         res.json(timeTrials)
     } catch (err) {
+        logger.error(err.message)
         res.status(500).send(err.message)
     }
 })
@@ -34,6 +37,7 @@ router.put('/:id', async (req, res) => {
         })
         res.sendStatus(204)
     } catch (err) {
+        logger.error(err.message)
         res.status(500).send(err.message)
     }
 })
@@ -46,6 +50,7 @@ router.delete('/:id', async (req, res) => {
         })
         res.sendStatus(204)
     } catch (err) {
+        logger.error(err.message)
         res.status(500).send(err.message)
     }
 })

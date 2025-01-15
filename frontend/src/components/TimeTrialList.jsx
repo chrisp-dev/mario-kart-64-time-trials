@@ -10,7 +10,7 @@ const TimeTrialList = ({ fetchData }) => {
   }, [fetchData]);
 
   useEffect(() => {
-    axios.get('/time_trials')
+    axios.get('/timeTrials')
       .then(response => {
         const responseData = Array.isArray(response.data) ? response.data : [];
         setData(responseData);
