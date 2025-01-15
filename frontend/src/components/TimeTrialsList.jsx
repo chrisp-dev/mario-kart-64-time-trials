@@ -1,70 +1,109 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Box, CssBaseline, createTheme, ThemeProvider, Typography, Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+import axios from '../api/axios';
 
-const TimeTrialsList = () => {
+const TimeTrialsList = ({ fetchData }) => {
   const [timeTrials, setTimeTrials] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchData = () => {
-    axios.get('/time_trials')
-      .then(response => {
-        // Ensure timeTrials is always an array
-        const trials = Array.isArray(response.data) ? response.data : [];
-        setTimeTrials(trials);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        setTimeTrials([]);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   useEffect(() => {
     fetchData();
+  }, [fetchData]);
+
+  useEffect(() => {
+    axios.get('/time_trials')
+      .then(response => {
+        const responseData = Array.isArray(response.data) ? response.data : [];
+        setTimeTrials(responseData);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching time trials:', error);
+        setTimeTrials([]);
+        setIsLoading(false);
+      });
   }, []);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+      background: {
+        default: '#121212'
+      },
+      text: {
+        primary: '#ffffff'
+      }
+    }
+  });
+
+  const lightTheme = createTheme({
+    palette: {
+      mode: 'light',
+      background: {
+        default: '#ffffff'
+      },
+      text: {
+        primary: '#000000'
+      }
+    }
+  });
+
+  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  const formatTime = (timeString) => {
+    const [minutes, seconds, milliseconds] = timeString.split(':');
+    return `${minutes}:${seconds}:${milliseconds}`;
+  };
+
   return (
-    <div>
-      <h2>Time Trials</h2>
-      {timeTrials.length === 0 ? (
-        <div>No time trials available. Please add some time trial records.</div>
-      ) : (
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Track ID</th>
-              <th>Character</th>
-              <th>Lap 1</th>
-              <th>Lap 2</th>
-              <th>Lap 3</th>
-              <th>Final Time</th>
-              <th>Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {timeTrials.map((trial) => (
-              <tr key={trial.id}>
-                <td>{trial.date}</td>
-                <td>{trial.track_id}</td>
-                <td>{trial.character}</td>
-                <td>{trial.lap1}</td>
-                <td>{trial.lap2}</td>
-                <td>{trial.lap3}</td>
-                <td>{trial.final_time}</td>
-                <td>{trial.notes}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
+    <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
+      <Box sx={{ padding: 2, width: '100%' }}>
+        <Button component={Link} to="/submit" variant="contained" color="primary" sx={{ marginBottom: 2 }}>
+          Submit New Time Trial
+        </Button>
+        <Typography variant="h4" gutterBottom>
+          Time Trials
+        </Typography>
+        {timeTrials.length === 0 ? (
+          <Typography>No time trials available. Please add some time trial records.</Typography>
+        ) : (
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Date</TableCell>
+                <TableCell>Track ID</TableCell>
+                <TableCell>Character</TableCell>
+                <TableCell>Lap 1</TableCell>
+                <TableCell>Lap 2</TableCell>
+                <TableCell>Lap 3</TableCell>
+                <TableCell>Final Time</TableCell>
+                <TableCell>Notes</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {timeTrials.map((trial) => (
+                <TableRow key={trial.id}>
+                  <TableCell>{new Date(trial.date).toLocaleString()}</TableCell>
+                  <TableCell>{trial.track_id}</TableCell>
+                  <TableCell>{trial.character}</TableCell>
+                  <TableCell>{formatTime(trial.lap1)}</TableCell>
+                  <TableCell>{formatTime(trial.lap2)}</TableCell>
+                  <TableCell>{formatTime(trial.lap3)}</TableCell>
+                  <TableCell>{formatTime(trial.final_time)}</TableCell>
+                  <TableCell>{trial.notes}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
+      </Box>
+    </ThemeProvider>
   );
 };
 

@@ -1,1 +1,17 @@
-node_modules
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+# SQLite database files
+mk64
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+
+# Other files to ignore
+.DS_Store
+.env

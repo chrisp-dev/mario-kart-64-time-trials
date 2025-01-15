@@ -1,45 +1,53 @@
 const express = require('express')
 const router = express.Router()
-const db = require('../db')
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const { date, track_id, character, lap1, lap2, lap3, final_time, notes } = req.body
-    db.run(`INSERT INTO TimeTrials (date, track_id, character, lap1, lap2, lap3, final_time, notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, [date, track_id, character, lap1, lap2, lap3, final_time, notes], function (err) {
-        if (err) {
-            return res.status(500).send(err.message)
-        }
-        res.status(201).json({ id: this.lastID })
-    })
+    try {
+        const newTimeTrial = await prisma.timeTrials.create({
+            data: { date, track_id, character, lap1, lap2, lap3, final_time, notes }
+        })
+        res.status(201).json({ id: newTimeTrial.id })
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 })
 
-router.get('/', (req, res) => {
-    db.all(`SELECT * FROM TimeTrials`, [], (err, rows) => {
-        if (err) {
-            return res.status(500).send(err.message)
-        }
-        res.json(rows)
-    })
+router.get('/', async (req, res) => {
+    try {
+        const timeTrials = await prisma.timeTrials.findMany()
+        res.json(timeTrials)
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 })
 
-router.put('/:id', (req, res) => {
+router.put('/:id', async (req, res) => {
     const { id } = req.params
     const { date, track_id, character, lap1, lap2, lap3, final_time, notes } = req.body
-    db.run(`UPDATE TimeTrials SET date = ?, track_id = ?, character = ?, lap1 = ?, lap2 = ?, lap3 = ?, final_time = ?, notes = ? WHERE id = ?`, [date, track_id, character, lap1, lap2, lap3, final_time, notes, id], function (err) {
-        if (err) {
-            return res.status(500).send(err.message)
-        }
+    try {
+        await prisma.timeTrials.update({
+            where: { id: parseInt(id) },
+            data: { date, track_id, character, lap1, lap2, lap3, final_time, notes }
+        })
         res.sendStatus(204)
-    })
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 })
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
     const { id } = req.params
-    db.run(`DELETE FROM TimeTrials WHERE id = ?`, [id], function (err) {
-        if (err) {
-            return res.status(500).send(err.message)
-        }
+    try {
+        await prisma.timeTrials.delete({
+            where: { id: parseInt(id) }
+        })
         res.sendStatus(204)
-    })
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 })
 
 module.exports = router
