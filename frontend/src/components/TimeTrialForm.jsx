@@ -4,7 +4,8 @@ import * as Yup from 'yup';
 import axios from '../api/axios';
 import { Box, Typography, TextField, Button } from '@mui/material';
 import Toast from './Toast';
-import './TimeTrialForm.css';
+import { format } from 'date-fns';
+import '../App.css';
 
 const TimeTrialForm = () => {
   const validationSchema = Yup.object({
@@ -23,7 +24,11 @@ const TimeTrialForm = () => {
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setErrorMessage('');
-    axios.post('/time_trials', values)
+    const formattedValues = {
+      ...values,
+      date: format(new Date(values.date), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"),
+    };
+    axios.post('/time_trials', formattedValues)
       .then(() => {
         resetForm();
       })
@@ -42,7 +47,7 @@ const TimeTrialForm = () => {
   };
 
   return (
-    (<Box className="time-trial-form">
+    <Box className="time-trial-form">
       <Box className="form-container">
         <Typography variant="h4" gutterBottom>
           Add Time Trial Record
@@ -78,8 +83,9 @@ const TimeTrialForm = () => {
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
                         input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
-                      }} />
+                        inputLabel: { shrink: true }
+                      }}
+                    />
                   )}
                 </Field>
               </Box>
@@ -95,8 +101,7 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -113,8 +118,7 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -131,8 +135,7 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -149,8 +152,7 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -167,8 +169,7 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -185,8 +186,7 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -205,8 +205,7 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -227,7 +226,7 @@ const TimeTrialForm = () => {
         </Formik>
       </Box>
       <Toast open={toastOpen} message={errorMessage} onClose={handleToastClose} />
-    </Box>)
+    </Box>
   );
 };
 

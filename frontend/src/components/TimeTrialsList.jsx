@@ -64,9 +64,6 @@ const TimeTrialsList = ({ fetchData }) => {
     <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <Box sx={{ padding: 2, width: '100%' }}>
-        <Button component={Link} to="/submit" variant="contained" color="primary" sx={{ marginBottom: 2 }}>
-          Submit New Time Trial
-        </Button>
         <Typography variant="h4" gutterBottom>
           Time Trials
         </Typography>

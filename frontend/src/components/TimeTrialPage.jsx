@@ -7,7 +7,7 @@ const TimeTrialPage = ({ fetchData, timeTrials, isLoading }) => {
   return (
     <BasicLayout>
       <h1>Mario Kart 64 Time Trials</h1>
-      <TimeTrialForm fetchData={fetchData} />
+      <TimeTrialForm />
       <TimeTrialsList fetchData={fetchData} timeTrials={Array.isArray(timeTrials) ? timeTrials : []} isLoading={isLoading} />
     </BasicLayout>
   );
