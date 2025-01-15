@@ -71,9 +71,9 @@ const TimeTrialForm = ({ fetchData }) => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
+                        input: { style: { color: '#ffffff' } },
                         inputLabel: { shrink: true }
-                      }}
-                    />
+                      }} />
                   )}
                 </Field>
               </Box>
@@ -88,6 +88,9 @@ const TimeTrialForm = ({ fetchData }) => {
                       fullWidth
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
+                      slotProps={{
+                        input: { style: { color: '#ffffff' } }
+                      }}
                     />
                   )}
                 </Field>
@@ -102,6 +105,9 @@ const TimeTrialForm = ({ fetchData }) => {
                       fullWidth
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
+                      slotProps={{
+                        input: { style: { color: '#ffffff' } }
+                      }}
                     />
                   )}
                 </Field>
@@ -116,6 +122,9 @@ const TimeTrialForm = ({ fetchData }) => {
                       fullWidth
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
+                      slotProps={{
+                        input: { style: { color: '#ffffff' } }
+                      }}
                     />
                   )}
                 </Field>
@@ -130,6 +139,9 @@ const TimeTrialForm = ({ fetchData }) => {
                       fullWidth
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
+                      slotProps={{
+                        input: { style: { color: '#ffffff' } }
+                      }}
                     />
                   )}
                 </Field>
@@ -144,6 +156,9 @@ const TimeTrialForm = ({ fetchData }) => {
                       fullWidth
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
+                      slotProps={{
+                        input: { style: { color: '#ffffff' } }
+                      }}
                     />
                   )}
                 </Field>
@@ -158,6 +173,9 @@ const TimeTrialForm = ({ fetchData }) => {
                       fullWidth
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
+                      slotProps={{
+                        input: { style: { color: '#ffffff' } }
+                      }}
                     />
                   )}
                 </Field>
@@ -174,6 +192,9 @@ const TimeTrialForm = ({ fetchData }) => {
                       rows={4}
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
+                      slotProps={{
+                        input: { style: { color: '#ffffff' } }
+                      }}
                     />
                   )}
                 </Field>
