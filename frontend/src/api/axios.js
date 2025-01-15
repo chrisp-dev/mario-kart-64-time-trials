@@ -6,7 +6,7 @@ const instance = rateLimit(axios.create({
     headers: {
         'Content-Type': 'application/json'
     }
-}), { maxRequests: 5, perMilliseconds: 20000 })
+}), { maxRequests: 1, perMilliseconds: 15000 })
 
 export const getData = async (url) => {
     try {
