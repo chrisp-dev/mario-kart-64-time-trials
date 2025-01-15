@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
+import axios from '../api/axios';
 import { Box, Typography, TextField, Button } from '@mui/material';
+import Toast from './Toast';
 import './TimeTrialForm.css';
 
-const TimeTrialForm = ({ fetchData }) => {
+const TimeTrialForm = () => {
   const validationSchema = Yup.object({
     date: Yup.date().required('Required'),
     track_id: Yup.number().required('Required'),
@@ -17,22 +18,27 @@ const TimeTrialForm = ({ fetchData }) => {
     notes: Yup.string(),
   });
 
-  const [errorMessage, setErrorMessage] = React.useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [toastOpen, setToastOpen] = useState(false);
 
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setErrorMessage('');
     axios.post('/time_trials', values)
       .then(() => {
-        fetchData();
         resetForm();
       })
       .catch((error) => {
         setErrorMessage('An error occurred while submitting the form. Please try again.');
+        setToastOpen(true);
         console.error('Error submitting form:', error);
       })
       .finally(() => {
         setSubmitting(false);
       });
+  };
+
+  const handleToastClose = () => {
+    setToastOpen(false);
   };
 
   return (
@@ -213,15 +219,7 @@ const TimeTrialForm = ({ fetchData }) => {
           )}
         </Formik>
       </Box>
-      <Box
-        sx={{
-          width: '100%',
-          '@media (min-width: 600px)': {
-            width: '65%',
-          },
-        }}
-      >
-      </Box>
+      <Toast open={toastOpen} message={errorMessage} onClose={handleToastClose} />
     </Box>)
   );
 };

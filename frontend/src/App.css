@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #121212; /* Dark background */
+  color: #ffffff; /* Light font color */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.full-window {
+  width: 100%;
+  height: 100vh;
+}
+
+.time-trial-form {
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: 2rem;
+}
+
+.time-trial-form .form-container {
+  width: 100%;
+}
+
+.time-trial-form .form-container .form {
+  width: 100%;
+}
+
+.time-trial-form .form-container .form .field {
+  margin-bottom: 1rem;
+}
+
+.time-trial-form .form-container .form .field input,
+.time-trial-form .form-container .form .field textarea {
+  color: #ffffff; /* Light font color for input */
+  background-color: #333333; /* Dark background for input */
+}
+
+.time-trial-form .form-container .form .field .MuiOutlinedInput-root fieldset {
+  border-color: #ffffff; /* Light border color */
+}
+
+.time-trial-form .form-container .form .field .MuiOutlinedInput-root.Mui-error fieldset {
+  border-color: #ff1744; /* Custom error color */
+}
+
+.time-trial-form .form-container .form .field .MuiFormHelperText-root {
+  color: #ff1744; /* Custom error text color */
+}
+
+.time-trial-form .form-container .form .submit-button {
+  background-color: #1e88e5;
+  color: #ffffff; /* Light font color for button */
+}
+
+.time-trial-form .form-container .form .submit-button:disabled {
+  background-color: #1e88e5;
+  color: #ffffff;
+}
+
+@media (min-width: 600px) {
+  .time-trial-form {
+    max-width: 450px; /* 10% smaller on larger views */
+  }
+}
