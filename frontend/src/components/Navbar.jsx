@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ width: '100%' }}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
           Mario Kart 64 Time Trials

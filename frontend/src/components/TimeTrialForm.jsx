@@ -78,7 +78,7 @@ const TimeTrialForm = () => {
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
                         input: { style: { color: '#ffffff' } },
-                        inputLabel: { shrink: true }
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }} />
                   )}
                 </Field>
@@ -95,7 +95,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -112,7 +113,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -129,7 +131,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -146,7 +149,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -163,7 +167,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -180,7 +185,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
@@ -199,7 +205,8 @@ const TimeTrialForm = () => {
                       error={meta.touched && !!meta.error}
                       helperText={meta.touched && meta.error ? meta.error : ''}
                       slotProps={{
-                        input: { style: { color: '#ffffff' } }
+                        input: { style: { color: '#ffffff' } },
+                        inputLabel: { shrink: true, style: { color: '#ffffff' } }
                       }}
                     />
                   )}
