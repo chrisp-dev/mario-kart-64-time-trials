@@ -63,7 +63,7 @@ const BasicLayout = () => {
   };
 
   return (
-    <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
+    (<ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4, padding: 2, width: '100%' }}>
         <Box
@@ -109,7 +109,9 @@ const BasicLayout = () => {
             variant="outlined"
             sx={{ minWidth: 120 }}
             type="number"
-            inputProps={{ min: 1, max: 8 }}
+            slotProps={{
+              htmlInput: { min: 1, max: 8 }
+            }}
           />
           <Button variant="contained" color="primary">Submit</Button>
         </Box>
@@ -146,7 +148,7 @@ const BasicLayout = () => {
           </Table>
         </Box>
       </Box>
-    </ThemeProvider>
+    </ThemeProvider>)
   );
 };
 
