@@ -21,11 +21,6 @@ const TimeTrialList = ({ fetchData }) => {
       });
   }, []);
 
-  const formatTime = (timeString) => {
-    const [minutes, seconds, milliseconds] = timeString.split(':');
-    return `${minutes}:${seconds}:${milliseconds}`;
-  };
-
   return (
     <Box
       sx={{
@@ -63,10 +58,10 @@ const TimeTrialList = ({ fetchData }) => {
                 <TableCell>{new Date(row.date).toLocaleString()}</TableCell>
                 <TableCell>{row.track_id}</TableCell>
                 <TableCell>{row.character}</TableCell>
-                <TableCell>{formatTime(row.lap1)}</TableCell>
-                <TableCell>{formatTime(row.lap2)}</TableCell>
-                <TableCell>{formatTime(row.lap3)}</TableCell>
-                <TableCell>{formatTime(row.final_time)}</TableCell>
+                <TableCell>{row.lap1}</TableCell>
+                <TableCell>{row.lap2}</TableCell>
+                <TableCell>{row.lap3}</TableCell>
+                <TableCell>{row.final_time}</TableCell>
                 <TableCell>{row.notes}</TableCell>
               </TableRow>
             ))

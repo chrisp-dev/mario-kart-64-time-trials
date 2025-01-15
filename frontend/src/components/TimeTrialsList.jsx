@@ -55,11 +55,6 @@ const TimeTrialsList = ({ fetchData }) => {
 
   const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  const formatTime = (timeString) => {
-    const [minutes, seconds, milliseconds] = timeString.split(':');
-    return `${minutes}:${seconds}:${milliseconds}`;
-  };
-
   return (
     <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
       <CssBaseline />
@@ -89,10 +84,10 @@ const TimeTrialsList = ({ fetchData }) => {
                   <TableCell>{new Date(trial.date).toLocaleString()}</TableCell>
                   <TableCell>{trial.track_id}</TableCell>
                   <TableCell>{trial.character}</TableCell>
-                  <TableCell>{formatTime(trial.lap1)}</TableCell>
-                  <TableCell>{formatTime(trial.lap2)}</TableCell>
-                  <TableCell>{formatTime(trial.lap3)}</TableCell>
-                  <TableCell>{formatTime(trial.final_time)}</TableCell>
+                  <TableCell>{trial.lap1}</TableCell>
+                  <TableCell>{trial.lap2}</TableCell>
+                  <TableCell>{trial.lap3}</TableCell>
+                  <TableCell>{trial.final_time}</TableCell>
                   <TableCell>{trial.notes}</TableCell>
                 </TableRow>
               ))}
