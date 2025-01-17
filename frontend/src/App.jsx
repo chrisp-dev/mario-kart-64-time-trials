@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
-import axios from './api/axios'; // Update the import to use the custom axios instance
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Box } from '@mui/material';
+import axios from './api/axios'; // Update the import to use the custom axios instance
+import Navbar from './components/common/Navbar';
 import TimeTrialForm from './components/forms/TimeTrialForm';
 import TimeTrialsList from './components/lists/TimeTrialsList';
 import BasicLayout from './components/common/BasicLayout';
-import Navbar from './components/common/Navbar';
 import TimeTrialPage from './pages/TimeTrialPage';
 import OCRPage from './pages/OCRPage';
 import './App.css';
 
 const App = () => {
   const [timeTrials, setTimeTrials] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = () => {
     setIsLoading(true);
@@ -28,17 +29,18 @@ const App = () => {
         setIsLoading(false);
       });
   };
-
   return (
     <Router>
       <Navbar />
       <div className="app-container">
         <Routes>
           <Route path="/" element={
-            <div>
-              <h1>Mario Kart 64 Time Trials</h1>
-              <TimeTrialForm fetchData={fetchData} />
-              <TimeTrialsList fetchData={fetchData} timeTrials={timeTrials} isLoading={isLoading} />
+            <div className="full-window">
+              <Box sx={{ padding: 2, width: '100%' }} className="full-window">
+                <h1>Mario Kart 64 Time Trials</h1>
+                <TimeTrialForm fetchData={fetchData} />
+                <TimeTrialsList fetchData={fetchData} timeTrials={timeTrials} isLoading={isLoading} />
+              </Box>
             </div>
           } />
           <Route path="/basic-layout" element={<div className="full-window"><BasicLayout /></div>} />

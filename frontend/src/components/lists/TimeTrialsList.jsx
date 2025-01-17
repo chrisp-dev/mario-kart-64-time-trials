@@ -1,53 +1,29 @@
 import React, { useEffect } from 'react';
-import { Box, CssBaseline, createTheme, ThemeProvider, Typography, Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import axios from '../../api/axios';
+import { Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Skeleton } from '@mui/material';
 
 const TimeTrialsList = ({ fetchData, timeTrials, isLoading }) => {
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Box sx={{ padding: 2, width: '100%' }} className="full-window">
+        <Skeleton variant="rectangular" width="100%" height={118} />
+        <Skeleton variant="rectangular" width="100%" height={400} sx={{ marginTop: 2 }} />
+      </Box>
+    );
   }
 
-  const darkTheme = createTheme({
-    palette: {
-      mode: 'dark',
-      background: {
-        default: '#121212'
-      },
-      text: {
-        primary: '#ffffff'
-      }
-    }
-  });
-
-  const lightTheme = createTheme({
-    palette: {
-      mode: 'light',
-      background: {
-        default: '#ffffff'
-      },
-      text: {
-        primary: '#000000'
-      }
-    }
-  });
-
-  const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
   return (
-    <ThemeProvider theme={prefersDarkMode ? darkTheme : lightTheme}>
-      <CssBaseline />
-      <Box sx={{ padding: 2, width: '100%' }}>
-        <Typography variant="h4" gutterBottom>
-          Time Trials
-        </Typography>
-        {timeTrials.length === 0 ? (
-          <Typography>No time trials available. Please add some time trial records.</Typography>
-        ) : (
+    <Box sx={{ padding: 2, width: '100%' }}>
+      <Typography variant="h4" gutterBottom>
+        Time Trials List
+      </Typography>
+      {timeTrials.length === 0 ? (
+        <Typography variant="body1">No time trials available. Please add some records.</Typography>
+      ) : (
+        <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -76,9 +52,9 @@ const TimeTrialsList = ({ fetchData, timeTrials, isLoading }) => {
               ))}
             </TableBody>
           </Table>
-        )}
-      </Box>
-    </ThemeProvider>
+        </TableContainer>
+      )}
+    </Box>
   );
 };
 
